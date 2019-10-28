@@ -10,59 +10,43 @@
 
 <body>
     <script>
+        let playerSelection = 'rock'
+        let playerLowerCase = playerSelection.toLowerCase()
+        let computerSelection = computerPlay()
 
         function playRound(playerSelection, computerSelection) {
 
-            playerLowerCase = playerSelection.toLowerCase()
+            let playerLowerCase = playerSelection.toLowerCase()
+            let result = ''
 
-            console.log(playerLowerCase + ' vs ' + computerSelection)
-
-            function win() { alert(`You Win - ${playerLowerCase} beats  ${computerSelection}`) }
-            function lose() { alert(`You Lose - ${playerLowerCase} loses to  ${computerSelection}`) }
-            function draw() { alert(`You Draw - ${playerLowerCase} matches  ${computerSelection}`) }
-
-
-
-
-            switch (playerLowerCase) {
-                case 'rock':
+            if (playerLowerCase === 'rock') {
+                computerSelection === 'scissors' ?
+                    result = 'Player wins' :
                     computerSelection === 'paper' ?
-                        win() :
-                        computerSelection === 'scissors' ?
-                            lose() :
-                            draw()
-                    break;
-                case 'paper':
+                        result = 'Player loses' :
+                        result = 'draw'
+            } else if (playerLowerCase === 'paper') {
+                computerSelection === 'rock' ?
+                    result = 'Player wind' :
+                    computerSelection === 'scissors' ?
+                        result = 'Player loses' :
+                        result = 'draw'
+            } else if (playerLowerCase === 'scissors') {
+                computerSelection === 'paper' ?
+                    result = 'Player wins' :
                     computerSelection === 'rock' ?
-                        win() :
-                        computerSelection === 'scissors' ?
-                            lose() :
-                            draw()
-                    break;
-                case 'scissor':
-                    computerSelection === 'paper' ?
-                        win() :
-                        computerSelection === 'rock' ?
-                            lose() :
-                            draw()
-                    break;
-
-                default:
-                    alert('error')
-                    break;
+                        result = 'Player loses' :
+                        result = 'draw'
             }
 
-            // your code here!
+            return `Player: ${playerLowerCase} - vs - ${computerSelection} : Computer ** ${result} **`
         }
+
         function computerPlay() {
             var myArray = ['rock', 'paper', 'scissors'];
             var random = myArray[Math.floor(Math.random() * myArray.length)];
             return random
         }
-
-        let playerSelection = 'rock'
-
-        const computerSelection = computerPlay()
 
         console.log(playRound(playerSelection, computerSelection))
 
