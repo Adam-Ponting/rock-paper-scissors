@@ -10,45 +10,83 @@
 
 <body>
     <script>
-        let playerSelection = 'rock'
-        let playerLowerCase = playerSelection.toLowerCase()
-        let computerSelection = computerPlay()
+        // create global variables
+        let playerSelection = ''
+        let computerSelection = ''
+        let round = 0
+        let playerScore = 0
+        let computerScore = 0
+        let draw = 0
+
+
 
         function playRound(playerSelection, computerSelection) {
-
-            let playerLowerCase = playerSelection.toLowerCase()
             let result = ''
 
-            if (playerLowerCase === 'rock') {
-                computerSelection === 'scissors' ?
-                    result = 'Player wins' :
-                    computerSelection === 'paper' ?
-                        result = 'Player loses' :
-                        result = 'draw'
-            } else if (playerLowerCase === 'paper') {
-                computerSelection === 'rock' ?
-                    result = 'Player wind' :
-                    computerSelection === 'scissors' ?
-                        result = 'Player loses' :
-                        result = 'draw'
-            } else if (playerLowerCase === 'scissors') {
-                computerSelection === 'paper' ?
-                    result = 'Player wins' :
-                    computerSelection === 'rock' ?
-                        result = 'Player loses' :
-                        result = 'draw'
+            function wins() {
+                result = 'Player wins'
+                playerScore++
+                round++
+            }
+            function loses() {
+                result = 'Player loses'
+                computerScore++
+                round++
+            }
+            function draws() {
+                result = 'Match drawn'
+                draw++
+                round++
             }
 
-            return `Player: ${playerLowerCase} - vs - ${computerSelection} : Computer ** ${result} **`
+            if (playerSelection === 'rock') {
+                computerSelection === 'scissors' ?
+                    wins() :
+                    computerSelection === 'paper' ?
+                        loses() :
+                        draws()
+            } else if (playerSelection === 'paper') {
+                computerSelection === 'rock' ?
+                    wins() :
+                    computerSelection === 'scissors' ?
+                        loses() :
+                        draws()
+            } else if (playerSelection === 'scissors') {
+                computerSelection === 'paper' ?
+                    wins() :
+                    computerSelection === 'rock' ?
+                        loses() :
+                        draws()
+            }
+            return `**Round ${round}** Player: ${playerSelection} - vs - ${computerSelection} : Computer **${result}**`
         }
 
         function computerPlay() {
-            var myArray = ['rock', 'paper', 'scissors'];
-            var random = myArray[Math.floor(Math.random() * myArray.length)];
-            return random
+            let myArray = ['rock', 'paper', 'scissors'];
+            let random = myArray[Math.floor(Math.random() * myArray.length)];
+            computerSelection = random
+            return computerSelection
         }
 
-        console.log(playRound(playerSelection, computerSelection))
+        function playerPrompt() {
+            let result = prompt('choose', 'paper').toLowerCase()
+            playerSelection = result
+            return playerSelection
+        }
+
+        function game() {
+            if (round < 5) {
+                computerPlay()
+                playerPrompt()
+                return playRound(playerSelection, computerSelection)
+            } else {
+                return gameOver(playerScore, computerScore, draw)
+            }
+        }
+        function gameOver(win, loss, draw) {
+            return `Game over. Scores after ${round} rounds - Wins: ${win} Losses: ${loss} Draws: ${draw}`
+        }
+        console.log(game())
 
     </script>
 </body>
