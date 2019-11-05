@@ -1,0 +1,7 @@
+body {
+    background:rgb(236, 171, 171);
+}
+
+#choice-cards p {
+    display: inline-block;;
+}

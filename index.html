@@ -1,94 +1,32 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <!-- link styles -->
+    <link rel="stylesheet" href="style.css">
+    <title>Rock Paper Scissors</title>
 </head>
 
 <body>
-    <script>
-        // create global variables
-        let playerSelection = ''
-        let computerSelection = ''
-        let round = 0
-        let playerScore = 0
-        let computerScore = 0
-        let draw = 0
+    <main>
+        <div>
 
+            <button class="button rock" data-play="rock">rock</button>
+            <button class="button paper" data-play="paper">paper</button>
+            <button class="button scissors" data-play="scissors">scissors</button>
+        </div>
+        <div id="choice-cards">
+            <p id="playerSelection"></p>
+            <p id="cpuSelection"></p>
+        </div>
+    </main>
 
-
-        function playRound(playerSelection, computerSelection) {
-            let result = ''
-
-            function wins() {
-                result = 'Player wins'
-                playerScore++
-                round++
-            }
-            function loses() {
-                result = 'Player loses'
-                computerScore++
-                round++
-            }
-            function draws() {
-                result = 'Match drawn'
-                draw++
-                round++
-            }
-
-            if (playerSelection === 'rock') {
-                computerSelection === 'scissors' ?
-                    wins() :
-                    computerSelection === 'paper' ?
-                        loses() :
-                        draws()
-            } else if (playerSelection === 'paper') {
-                computerSelection === 'rock' ?
-                    wins() :
-                    computerSelection === 'scissors' ?
-                        loses() :
-                        draws()
-            } else if (playerSelection === 'scissors') {
-                computerSelection === 'paper' ?
-                    wins() :
-                    computerSelection === 'rock' ?
-                        loses() :
-                        draws()
-            }
-            return `**Round ${round}** Player: ${playerSelection} - vs - ${computerSelection} : Computer **${result}**`
-        }
-
-        function computerPlay() {
-            let myArray = ['rock', 'paper', 'scissors'];
-            let random = myArray[Math.floor(Math.random() * myArray.length)];
-            computerSelection = random
-            return computerSelection
-        }
-
-        function playerPrompt() {
-            let result = prompt('choose', 'paper').toLowerCase()
-            playerSelection = result
-            return playerSelection
-        }
-
-        function game() {
-            if (round < 5) {
-                computerPlay()
-                playerPrompt()
-                return playRound(playerSelection, computerSelection)
-            } else {
-                return gameOver(playerScore, computerScore, draw)
-            }
-        }
-        function gameOver(win, loss, draw) {
-            return `Game over. Scores after ${round} rounds - Wins: ${win} Losses: ${loss} Draws: ${draw}`
-        }
-        console.log(game())
-
-    </script>
+    <!-- link javascript -->
+    <script src="script.js"></script>
 </body>
 
 </html>
