@@ -1,7 +1,19 @@
 body {
     background:rgb(236, 171, 171);
+    text-align: center;
+
+
+}
+#choice-cards,
+#buttons-wrapper{
+    border: 1px solid beige;
+    padding: 1em;;
 }
 
 #choice-cards p {
-    display: inline-block;;
+    display: inline-block;
+    margin: 0 auto;
+}
+.win {
+    background-color: green;
 }

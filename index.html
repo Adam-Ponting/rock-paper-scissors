@@ -13,15 +13,20 @@
 
 <body>
     <main>
-        <div>
-
+        <div id="buttons-wrapper">
             <button class="button rock" data-play="rock">rock</button>
             <button class="button paper" data-play="paper">paper</button>
             <button class="button scissors" data-play="scissors">scissors</button>
         </div>
         <div id="choice-cards">
-            <p id="playerSelection"></p>
+            <p id="playerSelection"></p> <span>VS</span>
             <p id="cpuSelection"></p>
+        </div>
+        <div>
+            <p>Rounds Played: <span id="roundsPlayed">0</span></p>
+            <p>Rounds Won: <span id="roundsWon">0</span></p>
+            <p>Rounds Lost: <span id="roundsLost">0</span></p>
+            <p>Rounds Drawn: <span id="roundsDrawn">0</span></p>
         </div>
     </main>
 
